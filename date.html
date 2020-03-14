@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="jquery-3.3.1.min.js"></script> -->
+    <script>
+
+        function remainingTime(estDate, today) {
+
+            var years = 0;
+            var todayMonth = today.getMonth();
+            var estMonth = estDate.getMonth();
+            var todayDate = today.getDate(), estBDate = estDate.getDate();
+            var lastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            var remaningMonths = 0, remainingDays = 0;
+
+            if (estMonth > todayMonth) {
+                years = today.getFullYear() - estDate.getFullYear() - 1;
+                if (estBDate > todayDate) {
+                    remaningMonths = 12 - (estMonth + 1) + todayMonth;
+                    remainingDays = lastDay - (estBDate + 1) + todayDate + 1;
+                } else {
+                    remaningMonths = 12 - (estMonth + 1) + (todayMonth + 1);
+                    remainingDays = todayDate - estBDate;
+                }
+
+            } else {
+                years = today.getFullYear() - estDate.getFullYear();
+                if (estBDate > todayDate) {
+                    remaningMonths = (todayMonth) - (estMonth + 1);
+                    remainingDays = lastDay - (estBDate + 1) + todayDate + 1;
+                } else {
+                    remaningMonths = (todayMonth + 1) - (estMonth + 1);
+                    remainingDays = todayDate - estBDate;
+                }
+
+            }
+            console.log('lastDay: ' + lastDay);
+            console.log('estMonth: ' + estMonth + ', todayMonth: ' + todayMonth + ', todayDate: ' + todayDate + ', estBDate: ' + estBDate);
+            console.log('Rem years: ' + years + ', remaningMonths: ' + remaningMonths + ', remainingDays: ' + remainingDays);
+
+        }
+
+
+
+        (function () {
+            var today = new Date('2020-3-14');
+            var estDate = new Date('2013-1-11');
+
+            remainingTime(estDate, today);
+
+
+        })();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
